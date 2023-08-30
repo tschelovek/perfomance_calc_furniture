@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"/>
+<!--    <link rel="stylesheet" href="./css/style.css">-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Vite App</title>
+    <style>
+        body {
+            background-color: #2B2F34;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+<div id="app"></div>
+<script type="module" src="./main.js"></script>
+<button type="button" id="test">Click me, pls</button>
+
+<div class="container">
+    <form action="/" method="post" enctype="multipart/form-data" id="calc_furniture">
+        <div class="wrapper">
+            <div class="calc-furniture">
+                <h1 class="title_h1">Рассчитайте бюджет и эффективность рекламной кампании:</h1>
+
+                <div class="calc__row">
+                    <h3>Какую продукцию Вы продаете?</h3>
+
+                    <!--                <select name="furniture_type" id="furniture_type" multiple>-->
+                    <!--                    <option value="kitchen">кухонная мебель</option>-->
+                    <!--                    <option value="corpus">корпусная мебель</option>-->
+                    <!--                    <option value="soft">мягкая мебель (кресла, диваны)</option>-->
+                    <!--                    <option value="dining">столовая мебель</option>-->
+                    <!--                </select>-->
+
+
+                </div>
+
+                <fieldset>
+                    <div class="product-types">
+                        <legend>Какую продукцию Вы продаете?</legend>
+
+                        <div>
+                            <input type="checkbox" id="kitchen" name="kitchen"
+                                   data-conversion="2"
+                                   data-click="60"
+                            />
+                            <label for="kitchen">кухонная мебель</label>
+                        </div>
+                        <div>
+                            <input type="checkbox" id="corpus" name="corpus"
+                                   data-conversion="3"
+                                   data-click="40"
+                            />
+                            <label for="corpus">корпусная мебель</label>
+                        </div>
+                        <div>
+                            <input type="checkbox" id="soft" name="soft"
+                                   data-conversion="2.5"
+                                   data-click="45"
+                            />
+                            <label for="soft">мягкая мебель (кресла, диваны)</label>
+                        </div>
+                        <div>
+                            <input type="checkbox" id="dining" name="dining"
+                                   data-conversion="3"
+                                   data-click="35"
+                            />
+                            <label for="dining">столовая мебель</label>
+                        </div>
+                        <div>
+                            <input type="checkbox" id="sells_another_checkbox"
+                                   data-conversion="2.5"
+                                   data-click="35"
+                            />
+                            <label for="sells_another_text">Другое </label>
+                            <input type="text" id="sells_another_text" name="sells_another_text"/>
+                        </div>
+                    </div>
+                </fieldset>
+
+                <fieldset>
+                    <legend>Специфика Вашей компании?</legend>
+
+                    <div>
+                        <input type="checkbox" id="custom" name="custom" />
+                        <label for="custom">изготовление на заказ</label>
+                    </div>
+                    <div>
+                        <input type="checkbox" id="retail" name="retail" />
+                        <label for="retail">продажа в розницу</label>
+                    </div>
+                    <div>
+                        <input type="checkbox" id="wholesale" name="wholesale" />
+                        <label for="wholesale">продажа оптом</label>
+                    </div>
+                    <div>
+                        <label for="sells_custom">Другое </label>
+                        <input type="text" id="sells_custom" name="sells_custom" />
+                    </div>
+                </fieldset>
+
+                <fieldset>
+                    <legend>География Ваших продаж?</legend>
+
+                    <div>
+<!--                        <label for="sells_another"></label>-->
+                        <input type="text" id="geography" name="sells_another" />
+                    </div>
+                </fieldset>
+
+                <fieldset>
+                    <legend>4. Сколько заявок Вы сейчас получаете в месяц?</legend>
+
+                    <div>
+<!--                        <label for="sells_another"></label>-->
+                        <input type="number" id="amount" name="sells_another" />
+                    </div>
+                </fieldset>
+
+                <fieldset>
+                    <legend>5. Какой % заявок Вы закрываете в продажу?</legend>
+
+<!--                    <div>-->
+<!--                        <input type="number" id="10percent" name="10percent" />-->
+<!--                        <label for="10percent">10%</label>-->
+<!--                    </div>-->
+<!--                    <div>-->
+<!--                        <input type="number" id="30percent" name="30percent" />-->
+<!--                        <label for="30percent">10 - 30%</label>-->
+<!--                    </div>-->
+<!--                    <div>-->
+<!--                        <input type="number" id="50percent" name="50percent" />-->
+<!--                        <label for="50percent">30 - 50%</label>-->
+<!--                    </div>-->
+<!--                    <div>-->
+<!--                        <input type="number" id="80percent" name="80percent" />-->
+<!--                        <label for="80percent">50 - 80%</label>-->
+<!--                    </div>-->
+
+                    <select name="conversion_sells" id="conversion_sells">
+                        <option value="10" selected>10%</option>
+                        <option value="30">10 - 30%</option>
+                        <option value="50">30 - 50%</option>
+                        <option value="80">50 - 80%</option>
+                    </select>
+                </fieldset>
+
+                <fieldset>
+                    <div>
+                        <label for="amount_pay">6. Ваш средний чек, руб.:</label>
+                        <input type="number" id="amount_pay" name="amount_pay" />
+                    </div>
+                </fieldset>
+
+                <fieldset>
+                    <legend>7. На какой объем продаж Вы хотите выйти?</legend>
+                    <div>
+                        <input type="number" id="target_sells" name="target_sells" />
+                    </div>
+                </fieldset>
+
+                <div class="calc-mr__total">
+                    <div class="calc-mr__total__sum">
+                        <span>Рекомендуемый рекламный бюджет: </span>
+                        <span class="green"><span id="advertisement">0</span>₽</span>
+                    </div>
+                    <div class="calc-mr__total__sum">
+                        <span>Доля рекламы к выручке (ДРР, %): </span>
+                        <span class="green"><span id="advertisement_to_revenue">0</span>₽</span>
+                    </div>
+                    <div class="calc-mr__total__btn-wrapper">
+                        <button type="button" class="btn btn_green">Сохранить расчёт</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+</body>
+</html>
