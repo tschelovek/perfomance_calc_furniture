@@ -51,38 +51,42 @@ document.addEventListener('DOMContentLoaded', () => {
             (acc, cur) => {
                 return cur.dataset.conversion > acc ? cur.dataset.conversion : acc
             }, 0)
-
         const clicks = Math.floor(lids / conversionToLids);
-        const clickPrice = () => {
-            const highestPrice = Math.max.apply(
-                null,
-                Array.from(document.querySelectorAll('.product-types input'))
-                    .map(input => parseInt(input.dataset.click))
-            );
-                // .sort((a, b) => b.dataset.conversion - a.dataset.conversion)[0]
-                // .dataset.conversion
-                // .reduce(function (a, b) {
-                //     console.log(a, b)
-                //     return (a.dataset.conversion > b.dataset.conversion)
-                //         ? a.dataset.conversion
-                //         : b.dataset.conversion;
-                // })
-            function collectionReducer(accumulator, currentV) {
-                if (currentV.type === 'text') {
-                    if (currentV.value.trim().length > 0 && currentV.dataset.click < accumulator) {
-                        return currentV.dataset.click
-                    }
-                    return accumulator
-                }
-                if (currentV.dataset.click < accumulator) {
-                    return currentV.dataset.click
-                }
-                return accumulator
-            }
-
-            return Array.from(inputsCollection).reduce(collectionReducer, highestPrice)
-        }
-        const budget = clicks * clickPrice();
+        const highestPrice = Math.max.apply(
+            null,
+            Array.from(document.querySelectorAll('.product-types input[type="checkbox"]'))
+                .map(input => parseInt(input.dataset.click))
+        );
+        const clickPrice = Array.from(inputsCollection).reduce(
+            (acc, cur) => {
+                return cur.dataset.click < acc ? cur.dataset.click : acc
+            }, highestPrice)
+        // const clickPrice = () => {
+        //     // .sort((a, b) => b.dataset.conversion - a.dataset.conversion)[0]
+        //     // .dataset.conversion
+        //     // .reduce(function (a, b) {
+        //     //     console.log(a, b)
+        //     //     return (a.dataset.conversion > b.dataset.conversion)
+        //     //         ? a.dataset.conversion
+        //     //         : b.dataset.conversion;
+        //     // })
+        //     function collectionReducer(accumulator, currentV) {
+        //         if (currentV.type === 'text') {
+        //             if (currentV.value.trim().length > 0 && currentV.dataset.click < accumulator) {
+        //                 return currentV.dataset.click
+        //             }
+        //             return accumulator
+        //         }
+        //         if (currentV.dataset.click < accumulator) {
+        //             return currentV.dataset.click
+        //         }
+        //         return accumulator
+        //     }
+        //
+        //     return Array.from(inputsCollection).reduce(collectionReducer, highestPrice)
+        // }
+        console.log(clickPrice)
+        const budget = clicks * clickPrice;
         const advertisementToRevenue = budget / parseInt(inputTargetSells.value);
 
         // console.log(conversion)
