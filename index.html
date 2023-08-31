@@ -2,9 +2,15 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8"/>
-<!--    <link rel="stylesheet" href="./css/style.css">-->
+    <!--    <link rel="stylesheet" href="./css/style.css">-->
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <title>Vite App</title>
+    <link rel="stylesheet" href="./css/style.css">
+<!--    <script type="text/javascript" src="./js/libs/jquery3.7.1.min.js"></script>-->
+<!--    <script type="text/javascript" src="./js/libs/rangeslider-js.min.js"></script>-->
+    <script type="text/javascript" src="./js/libs/jquery.min.js"></script>
+    <script type="text/javascript" src="./js/libs/rangeslider-js.min.js"></script>
+    <script type="text/javascript" src="js/main.js"></script>
     <style>
         body {
             background-color: #2B2F34;
@@ -13,9 +19,8 @@
     </style>
 </head>
 <body>
-<div id="app"></div>
-<script type="module" src="./main.js"></script>
-<button type="button" id="test">Click me, pls</button>
+<!--<div id="app"></div>-->
+<!--<button type="button" id="test">Click me, pls</button>-->
 
 <div class="container">
     <form action="/" method="post" enctype="multipart/form-data" id="calc_furniture">
@@ -37,8 +42,8 @@
                 </div>
 
                 <fieldset>
+                    <legend>1. Какую продукцию Вы продаете?</legend>
                     <div class="product-types">
-                        <legend>Какую продукцию Вы продаете?</legend>
 
                         <div>
                             <input type="checkbox" id="kitchen" name="kitchen"
@@ -70,6 +75,7 @@
                         </div>
                         <div>
                             <input type="checkbox" id="sells_another_checkbox"
+                                   class="input_hidden"
                                    data-conversion="2.5"
                                    data-click="35"
                             />
@@ -80,32 +86,32 @@
                 </fieldset>
 
                 <fieldset>
-                    <legend>Специфика Вашей компании?</legend>
+                    <legend>2. Специфика Вашей компании?</legend>
 
                     <div>
-                        <input type="checkbox" id="custom" name="custom" />
+                        <input type="checkbox" id="custom" name="custom"/>
                         <label for="custom">изготовление на заказ</label>
                     </div>
                     <div>
-                        <input type="checkbox" id="retail" name="retail" />
+                        <input type="checkbox" id="retail" name="retail"/>
                         <label for="retail">продажа в розницу</label>
                     </div>
                     <div>
-                        <input type="checkbox" id="wholesale" name="wholesale" />
+                        <input type="checkbox" id="wholesale" name="wholesale"/>
                         <label for="wholesale">продажа оптом</label>
                     </div>
                     <div>
                         <label for="sells_custom">Другое </label>
-                        <input type="text" id="sells_custom" name="sells_custom" />
+                        <input type="text" id="sells_custom" name="sells_custom"/>
                     </div>
                 </fieldset>
 
                 <fieldset>
-                    <legend>География Ваших продаж?</legend>
+                    <legend>3. География Ваших продаж?</legend>
 
                     <div>
-<!--                        <label for="sells_another"></label>-->
-                        <input type="text" id="geography" name="sells_another" />
+                        <!--                        <label for="sells_another"></label>-->
+                        <input type="text" id="geography" name="sells_another"/>
                     </div>
                 </fieldset>
 
@@ -113,65 +119,67 @@
                     <legend>4. Сколько заявок Вы сейчас получаете в месяц?</legend>
 
                     <div>
-<!--                        <label for="sells_another"></label>-->
-                        <input type="number" id="amount" name="sells_another" />
+                        <!--                        <label for="sells_another"></label>-->
+                        <input type="number" id="amount" name="sells_another"/>
                     </div>
                 </fieldset>
 
                 <fieldset>
                     <legend>5. Какой % заявок Вы закрываете в продажу?</legend>
 
-<!--                    <div>-->
-<!--                        <input type="number" id="10percent" name="10percent" />-->
-<!--                        <label for="10percent">10%</label>-->
-<!--                    </div>-->
-<!--                    <div>-->
-<!--                        <input type="number" id="30percent" name="30percent" />-->
-<!--                        <label for="30percent">10 - 30%</label>-->
-<!--                    </div>-->
-<!--                    <div>-->
-<!--                        <input type="number" id="50percent" name="50percent" />-->
-<!--                        <label for="50percent">30 - 50%</label>-->
-<!--                    </div>-->
-<!--                    <div>-->
-<!--                        <input type="number" id="80percent" name="80percent" />-->
-<!--                        <label for="80percent">50 - 80%</label>-->
-<!--                    </div>-->
-
                     <select name="conversion_sells" id="conversion_sells">
                         <option value="10" selected>10%</option>
                         <option value="30">10 - 30%</option>
-                        <option value="50">30 - 50%</option>
-                        <option value="80">50 - 80%</option>
+                        <option value="40">30 - 50%</option>
+                        <option value="65">50 - 80%</option>
                     </select>
                 </fieldset>
 
                 <fieldset>
                     <div>
                         <label for="amount_pay">6. Ваш средний чек, руб.:</label>
-                        <input type="number" id="amount_pay" name="amount_pay" />
+                        <input type="number" id="amount_pay" name="amount_pay"/>
                     </div>
                 </fieldset>
 
                 <fieldset>
                     <legend>7. На какой объем продаж Вы хотите выйти?</legend>
-                    <div>
-                        <input type="number" id="target_sells" name="target_sells" />
+                    <div class="calc-furniture__target">
+<!--                        <input type="number" id="target_sells" name="target_sells"/>-->
+                        <input
+                                type="range"
+                                id="target_sells"
+                                name="target_sells"
+                                min="5000000"
+                                max="200000000"
+                                value="50000000"
+                                step="5000000"
+                        >
+
+                        <div class="calc-furniture__target__numbers">
+                            <div class="limit">5 Млн</div>
+                            <div class="output"><span>50</span> Млн</div>
+                            <div class="limit">200 Млн</div>
+                        </div>
                     </div>
                 </fieldset>
 
-                <div class="calc-mr__total">
-                    <div class="calc-mr__total__sum">
+                <div class="calc-furniture__total">
+                    <div class="calc-furniture__total__sum">
                         <span>Рекомендуемый рекламный бюджет: </span>
-                        <span class="green"><span id="advertisement">0</span>₽</span>
+                        <span class="green"><span id="advertisement">0</span> ₽</span>
                     </div>
-                    <div class="calc-mr__total__sum">
+                    <div class="calc-furniture__total__sum">
                         <span>Доля рекламы к выручке (ДРР, %): </span>
-                        <span class="green"><span id="advertisement_to_revenue">0</span>₽</span>
+                        <span class="green"><span id="advertisement_to_revenue">0</span> %</span>
                     </div>
-                    <div class="calc-mr__total__btn-wrapper">
-                        <button type="button" class="btn btn_green">Сохранить расчёт</button>
+                    <div class="calc-furniture__total__btn-wrapper">
+                        <button type="button" class="btn btn_green">Рассчитать</button>
                     </div>
+                </div>
+
+                <div class="errors">
+
                 </div>
             </div>
         </div>
